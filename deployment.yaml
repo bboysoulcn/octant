@@ -16,7 +16,6 @@ spec:
     spec:
       containers:
         - name: octant
-          image: 
+          image: bboysoul/octant:v1.0.0
           command:
-            - sleep
-            - "3600"
+            - 
