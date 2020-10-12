@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: octant
+  namespace: octant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: octant
+  template:
+    metadata:
+      labels:
+        app: octant
+    spec:
+      containers:
+        - name: octant
+          image: 
+          command:
+            - sleep
+            - "3600"
