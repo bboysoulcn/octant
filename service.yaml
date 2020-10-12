@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: octant-service
+  namespace: octant
+spec:
+  selector:
+    app: octant
+  ports:
+    - protocol: TCP
+      port: 8900
+      targetPort: 8900
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: octant-ingress
+  namespace: octant
+spec:
+  rules:
+  - host: octant.xxxx.com
+    http:
+      paths:
+      - path:
+        backend:
+          serviceName: octant-service
+          servicePort: 8900

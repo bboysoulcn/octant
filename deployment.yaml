@@ -4,6 +4,8 @@ kind: Deployment
 metadata:
   name: octant
   namespace: octant
+  labels:
+    app: octant
 spec:
   replicas: 1
   selector:
@@ -17,5 +19,20 @@ spec:
       containers:
         - name: octant
           image: bboysoul/octant:v1.0.0
+          env:
+          - name: OCTANT_LISTENER_ADDR
+            value: 0.0.0.0:8900
+          - name: KUBECONFIG
+            value: /config/config
           command:
-            - 
+            - octant
+          ports:
+          - containerPort: 8900
+          volumeMounts:
+          - name: kubeconfig
+            mountPath: /config
+            readOnly: true
+      volumes:
+      - name: kubeconfig
+        configMap: 
+          name: kubeconfig
